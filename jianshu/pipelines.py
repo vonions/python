@@ -6,13 +6,19 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+import json
 
 
 class savePicPipeline(object):
-    def process_item(self, item, spider):
-        print('url============='+item['img_url'])
-        return item
 
+    def __init__(self):
+        # 保存json
+        self.file = open('novel.json', 'wb')
+
+    def process_item(self, item, spider):
+        line = json.dumps(dict(item)) + "\n"
+        self.file.write(line.encode('utf-8'))
+        return item
 
 from scrapy.pipelines.images import ImagesPipeline  # 用于下载图片的管道
 from scrapy import Request

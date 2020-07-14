@@ -21,6 +21,8 @@ class Jianshu(scrapy.Spider):
         url = 'http://movie.douban.com/top250/'
         yield scrapy.Request(url, headers=self.headers)
 
+
+
     def parse(self, response):
         item = JianshuItem()
         for each in response.xpath('//*[@id="content"]/div/div[1]/ol/li'):
