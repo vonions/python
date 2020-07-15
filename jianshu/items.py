@@ -8,6 +8,6 @@ import scrapy
 
 class JianshuItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    name = scrapy.Field()
     img_url = scrapy.Field()
     pass
