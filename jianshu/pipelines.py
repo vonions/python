@@ -55,11 +55,11 @@ class savePicPipeline(object):
         return item
     # 插入数据
     def insert_db(self,item):
-        values=(item['name'],item['img_url'])
+        values=(item['name'],item['img_url'],item['name2'])
         print(values)
         # sql = '''INSERT INTO MOVIE('name','url') VALUES(?,?)'''
         # self.db_conn.execute("INSERT INTO MOVIE VALUES (?,?)",(item['name'],item['img_url']));
-        self.db_conn.execute("INSERT INTO MOVIE('name','url') VALUES (?,?)",values);
+        self.db_conn.execute("INSERT INTO MOVIE('name','url','des') VALUES (?,?,?)",values);
         # self.db_cur.execute(sql, values)
 
         self.db_conn.commit()
