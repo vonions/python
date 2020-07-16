@@ -12,6 +12,9 @@ BOT_NAME = 'jianshu'
 SPIDER_MODULES = ['jianshu.spiders']
 NEWSPIDER_MODULE = 'jianshu.spiders'
 
+SQLITE_FILE = 'example.db'
+SQLITE_TABLE = 'dmoz'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'jianshu (+http://www.yourdomain.com)'
 

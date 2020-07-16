@@ -4,6 +4,7 @@ import re
 from jianshu.items import JianshuItem
 
 
+
 class Jianshu(scrapy.Spider):
     name = 'maoyan'
     allowed_domains = ['douban.com/']
@@ -26,15 +27,14 @@ class Jianshu(scrapy.Spider):
             imgurl = each.xpath('./div/div[1]/a/img/@src').extract()
 
             item['img_url'] = imgurl[0]
-            item['name'] = name
+            item['name'] = name[0]
             print(imgurl[0])
             print(name)
             yield item
-
 
         # 获取下一页的链接
         #
         # next_url = response.xpath('//ul[@class="pagination"]/li[last()]/a/@href').get()
         next_url = response.xpath('//span[@class="next"]/a/@href').get()
-        print(baseurl+str(next_url))
+        # print(baseurl+str(next_url))
         yield scrapy.Request(baseurl+str(next_url),callback=self.parse,dont_filter=True,headers=self.headers)
