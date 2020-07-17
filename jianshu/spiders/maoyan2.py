@@ -9,7 +9,10 @@ class Jianshu(scrapy.Spider):
     allowed_domains = ['movie.douban.com/']
     start_urls = ['http://movie.douban.com/top250/']
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36',
+        'channel': 'notification:user: 219500769',
+        'auth': '219500769_1594891656:5deda819983d322877d01d20bc46b3a73ceda73f'
+    }
 
     def start_requests(self):
         url = 'http://movie.douban.com/top250/'
@@ -44,7 +47,7 @@ class Jianshu(scrapy.Spider):
         # 获取下一页的链接
         #
         next_url = response.xpath('//span[@class="next"]/a/@href').get()
-        yield scrapy.Request(baseurl+str(next_url),callback=self.parse,dont_filter=True,headers=self.headers)
+        yield scrapy.Request(baseurl + str(next_url), callback=self.parse, dont_filter=True, headers=self.headers)
 
     # 进入详情页
     def parse_detail(self, response):
